@@ -7,10 +7,10 @@ namespace APIProducts.Services
     {
         private List<Product> _products = new List<Product>
         {
-            new Product() { IdProduct =1 , ProductName = "Aceite", Brand = "Corona"},
-            new Product() { IdProduct =2 , ProductName = "Leche", Brand = "Centrolac" }
+            new Product() { Id =1 , Name = "Aceite", Brand = "Ambar"},
+            new Product() { Id =2 , Name = "Leche", Brand = "Nestle" }
         };
-        public Product? GetProductById(int id) => _products.FirstOrDefault(p => p.IdProduct == id);
+        public Product? GetProductById(int id) => _products.FirstOrDefault(p => p.Id == id);
 
         public IEnumerable<Product> GetProducts() => _products;
 

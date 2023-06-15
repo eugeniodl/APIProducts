@@ -58,7 +58,7 @@ namespace UnitTesting
             // Assert
             var product = Assert.IsType<Product>(result?.Value);
             Assert.True(product != null);
-            Assert.Equal(product?.IdProduct, id);
+            Assert.Equal(product?.Id, id);
         }
 
         [Fact]
