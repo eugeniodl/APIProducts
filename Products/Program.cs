@@ -1,5 +1,5 @@
-using APIProducts.Respository;
-using APIProducts.Respository.IRepository;
+using Products.Repository;
+using Products.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 

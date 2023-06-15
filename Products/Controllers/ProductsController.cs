@@ -1,8 +1,8 @@
-﻿using APIProducts.Respository.IRepository;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Products.Repository.IRepository;
 
-namespace APIProducts.Controllers
+namespace Products.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,12 +16,13 @@ namespace APIProducts.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() => Ok(_productRepo.Get());
+        public IActionResult Get() => Ok(_productRepo.GetProducts());
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int Id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetById(int id)
         {
-            var product = _productRepo.GetById(Id);
+            var product = _productRepo.GetById(id);
             if(product == null)
                 return NotFound();
 
