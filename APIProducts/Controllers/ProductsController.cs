@@ -1,4 +1,4 @@
-﻿using APIProducts.Respository.IRepository;
+﻿using APIProducts.Services.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,23 +8,25 @@ namespace APIProducts.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository _productRepo;
+        private readonly IProductService _productService;
 
-        public ProductsController(IProductRepository productRepo)
+        public ProductsController(IProductService productService)
         {
-            _productRepo = productRepo;
+            _productService = productService;
         }
 
         [HttpGet]
-        public IActionResult Get() => Ok(_productRepo.Get());
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult Get() => Ok(_productService.GetProducts());
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int Id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetById(int id)
         {
-            var product = _productRepo.GetById(Id);
+            var product = _productService.GetProductById(id);
             if(product == null)
                 return NotFound();
-
             return Ok(product);
         }
     }
